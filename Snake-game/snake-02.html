@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<style>
+   #ground{
+      background:#fff;
+      border:2px solid #000;
+   }
+</style>
+<body>
+   <canvas id="ground" width="600" height="600">
+
+   </canvas>
+</body>
+<script>
+   var c = document.getElementById("ground");
+   var ctx = c.getContext("2d");
+   var speed = 1;    //速度变大以后就会出bug。。关于游戏编程这块一点都不太懂。也不知道怎么搜。上哪里找资料。
+
+   var box = 50;
+   var Playcontrol = true;
+   var food_img = 'food.png'
+
+   function Snake(){
+      this.x = 0;
+      this.y = 0;
+      this.Xspeed = box *1;
+      this.Yspeed = 0;
+      this.total = 1;
+      this.tail = [];
+      this.change = false;
+   
+
+
+      this.draw = function(){
+         ctx.fillStyle='rgb(150,230,30,0.8)';
+         
+         //snake身体绘画
+         for(let i = 0; i<this.total; i++){
+            ctx.fillRect(this.tail[i].x,this.tail[i].y, box,box);
+            // ctx.fillRect(this.tail[i].x, this.tail[i].y, box,box);
+         }
+         //snake头绘制
+         
+      }
+      this.update = function(){
+         //更新蛇的身体坐标
+         // this.tail[0] = {x:this.x, y:this.y}; //最开始只有一个头
+         this.tail.unshift({x:this.x, y:this.y});
+         console.log(this.tail);
+         // if(this.change){
+         //    console.log('+1')
+         // }else{
+         //    console.log(this.tail);
+         //    this.tail.pop();
+         // }
+         
+         console.log(this.total , this.tail);
+      
+         this.x += this.Xspeed;
+         this.y += this.Yspeed;
+         if (this.x > ground.width){
+            this.x = 0;
+         }
+         if (this.y > ground.height){
+            this.y = 0;
+         }
+         if (this.x < 0){
+            this.x = ground.width;
+         }
+         if (this.y < 0){
+            this.y = ground.height;
+         }
+      }
+      this.changeDirection = function(direction){
+         switch(direction){
+            case 'ArrowUp':
+               this.Xspeed = 0;
+               this.Yspeed = -speed*box;
+               break;
+            case 'ArrowDown':
+               this.Xspeed = 0;
+               this.Yspeed = speed*box;
+               break;
+            case 'ArrowLeft':
+               this.Xspeed = -speed*box;
+               this.Yspeed = 0;
+               break;
+            case 'ArrowRight':
+               this.Xspeed = speed*box;
+               this.Yspeed = 0;
+               break;
+         }
+      }
+
+
+      this.eat = function(fruit) {
+         if(this.x === fruit.x && this.y === fruit.y ){
+            this.total ++;
+            this.change = true;
+            return true;
+         }
+         this.change = false;
+         return false;
+      }
+   }
+
+
+
+   function Fruit(){
+      this.img = new Image();
+      this.img.src = 'food.png'
+
+      this.pickLocation = function(){
+         this.x = (Math.floor(Math.random() * (ground.width/box -1) )) *box;
+         this.y = (Math.floor(Math.random() * (ground.height/box -1) )) *box;
+      };
+      this.draw = function(){
+         ctx.fillStyle = 'rgb(0,145,55)';
+         ctx.drawImage(this.img,this.x,this.y,box,box)  //bug太多。最开始写的方法估计都有问题。放下了。
+         // ctx.fillRect(this.x,this.y,box,box);  
+      }
+   }
+
+   window.addEventListener('keydown',function(event){
+         var k = event.key;
+         snake.changeDirection(k);
+   })
+
+
+
+   snake = new Snake();
+   fruit = new Fruit();
+
+   fruit.pickLocation();
+   // console.log(fruit);
+
+
+
+   setInterval(function(){
+      ctx.clearRect(0,0,ground.width,ground.height);  
+      // ctx.fillStyle = "rgb(200,0,0,0.8)";
+      snake.update();
+      snake.draw();
+      fruit.draw();
+      if(snake.eat(fruit)){
+         fruit.pickLocation();
+      }
+   },300);
+
+</script>
+</html>

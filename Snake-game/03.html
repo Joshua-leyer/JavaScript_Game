@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   
+</body>
+<script>
+
+   // 一个不明白的问题：
+   // 为什么最后输出都是一样的
+
+   // head = {x:1,y:2};
+   // c_arry = []
+   
+   // c_arry[0] = head;
+   // for(let i =0; i<3; i++){
+   //    c_arry.unshift(head);
+   //    head.x++; head.y++;
+   // }
+   // console.log(c_arry);
+
+   //最后这样解决的了问题，但是具体上面为什么还是不明白
+   head = {x:1,y:2};
+   c_arry = [];
+   
+//    c_arry[0] = {x:head.x, y:head.y};
+//    for(let i =0; i<3; i++){
+//       head.x++; head.y++;
+//      
+//       
+//    }
+   c_arry.unshift({x:head.x, y:head.y});
+   console.log(c_arry);
+
+
+
+</script>
+</html>

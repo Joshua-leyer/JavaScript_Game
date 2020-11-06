@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css+js , 井字棋。</title>
+</head>
+<body>
+    <div id="bg">
+        <h1>写一个css版本,</h1>
+        <ul id="one">
+
+            <li><a></a></li>
+            <li><a></a></li>
+            <li><a></a></li>
+
+            <li><a></a></li>
+            <li><a></a></li>
+            <li><a></a></li>
+
+            <li><a></a></li>
+            <li><a></a></li>
+            <li><a></a></li>
+
+        </ul>
+    </div>
+    <div>
+        <h3>没有处理最后一个完成后不显示。图案就结束的问题。</h3>
+    </div>
+</body>
+<style>
+    h1{
+        text-align: center;
+    }
+    #bg{
+        margin:0 auto;
+        width: 310px;
+    }
+    ul{
+        list-style: none;
+        overflow: hidden; 
+        float: left;
+        width: 100%;
+        padding: 10px;
+        /* border: 2px solid rgb(0, 0, 0); */
+    }
+    li {
+        float: left;
+        height: 100px;
+        width: 30%;
+        border: 1px solid #000;
+        background-color: #fff;
+        position: relative;
+    } 
+    a{
+        position: absolute;
+        top: 50%;
+        transform: translate(50%, -50%);
+        /* text-align: center; */
+        width: 50px;
+        height: 50px;
+        display: inline-block;
+    }
+
+    .circle {
+        left: -5%;
+        width: 50px;
+        height: 50px;
+        border-radius: 4em;
+        border-style:solid;
+        border-color:#000000;
+    }
+    
+    .X{
+        position:relative;
+        top:50%;
+        left:32%;
+        width:16px;
+        height:50px;
+    }
+    .X:before{
+        transform:skew(32deg,0);
+        position:absolute;
+        content:'';
+        top:0;
+        left:0;
+        width:16px;
+        height:50px;
+        background-color:#000000;
+    }
+    .X:after{
+        transform:skew(-32deg,0);
+        position:absolute;
+        content:'';
+        top:0;
+        right:0;
+        width:16px;
+        height:50px;
+        background-color:#000000;
+    }
+
+</style>
+<script >
+    var li_el = document.querySelectorAll("li")
+    var a_el = document.querySelectorAll("a")
+
+    var change_class = 'circle'
+
+    let map_arr = []
+    for (let i = 0; i < 3; i++) {
+        map_arr[i] = []
+        for (let j = 0; j < 3; j++) {
+            map_arr[i].push(0)
+        }
+    }
+
+    let sequent_arr = []
+    for (let i = 0; i < 9; i++) {
+        sequent_arr.push(0)
+    }
+    
+
+
+    
+
+    //判断Game over~!
+    const judgeGame = function(map_arr) {
+        var row_plus = 0
+        var v_plus = 0
+        var x_plus = 0
+
+        let res = 0
+        // 横竖
+        for(let j = 0; j < 3; j++) {
+            row_plus = map_arr[j][0] + map_arr[j][1] + map_arr[j][2]
+            v_plus = map_arr[0][j] + map_arr[1][j] + map_arr[2][j]
+            
+            if(row_plus == 3 || row_plus == -3) {
+                res = row_plus
+            } else if (v_plus == 3 || v_plus == 3) {
+                res = v_plus
+            }
+
+
+        }
+        //斜着
+        x_plus = map_arr[1][1]
+        y_plus = map_arr[1][1]
+        for (let i = -1; i < 3; i += 2) {
+            x_plus += map_arr[1 + i][1 + i]
+            y_plus += map_arr[1 - i][1 + i]
+        }
+        console.log(x_plus)
+        console.log(y_plus)
+        if (x_plus == 3 || x_plus == -3) {
+            res = x_plus
+        } else if (y_plus == 3 || y_plus == -3) {
+            res = y_plus
+        }
+
+        //平局
+        console.log(sequent_arr)
+        var pin = fullMap(sequent_arr)
+        //pin = true  ，就是数组里面没有0, 图画被画满了。
+        console.log(pin)
+        if (pin == true) {
+            console.log(`进入了判断是否图形画完的函数。`)
+            if (res != 3 && res != -3) {
+                res = 1
+            }
+        }
+        return res
+    }
+    // 判断是否填满
+    const fullMap = function(sequent_arr) {
+        for(let i = 0; i < sequent_arr.length; i++) {
+            if (sequent_arr[i] == 0) {
+                //只要有一个等于0 就返回false
+                return false
+            }
+        }
+        return true
+    }
+
+    let vv = [0,0,1,0,0]
+    console.log(fullMap(vv))
+
+
+    //清空class函数
+    const restGame = function (game_stute) {
+        // 提示游戏输赢信息
+        if(game_stute == 3) {
+            alert('圆圈赢了~~！')
+        } else if (game_stute == -3) {
+            alert('X赢了~~！')
+        } else if (game_stute == 1) {
+            alert(`平局`)
+        }
+
+        //clear 操作
+        for(let i = 0; i < a_el.length; i++) {
+            console.log(a_el[i].removeAttribute("class"))
+        }
+
+        sequent_arr = []
+        for (let i = 0; i < 9; i++) {
+            sequent_arr.push(0)
+        }
+        map_arr = []
+        for (let i = 0; i < 3; i++) {
+            map_arr[i] = []
+            for (let j = 0; j < 3; j++) {
+                map_arr[i].push(0)
+            }
+        }
+    }
+
+
+    //  mark　操作
+    const squentArr = function(arr, n, mark) {
+        arr[n] = mark
+
+        //顺便循环传进去吧。每次标记都测试一次。
+        var into_index = 0
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                map_arr[i][j] = (arr[into_index])
+                into_index += 1
+            }
+        }
+        //写在这里可能不清晰。
+        //每次mark完以后都判断一下此时游戏状态时否可以结束。
+        var game_stute = judgeGame(map_arr)
+        if (game_stute == 3 || game_stute == -3 || game_stute == 1) {
+            restGame(game_stute)
+        }
+        return arr
+    }
+    
+
+    //图形操作
+    for (let i = 0; i < li_el.length; i++) {
+        li_el[i].index = i
+        li_el[i].addEventListener('click', function(event) {
+            var a_tip = li_el[i].firstChild
+            if (a_tip.getAttribute("class") == null) {
+                if (change_class == 'circle') {
+                    a_tip.setAttribute("class", "circle")
+                    change_class = 'X'
+                    squentArr(sequent_arr, this.index, 1)
+                } else if (change_class == 'X') {
+                    a_tip.setAttribute("class", "X")
+                    change_class = 'circle'
+                    squentArr(sequent_arr, this.index, -1)
+                }
+            }
+        })
+    }
+</script>
+</html>
