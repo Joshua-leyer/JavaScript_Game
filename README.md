@@ -7,6 +7,8 @@ html css js canvas 实现一些简单的游戏。
 one two ... 是作者对文件的命名方式。也是写东西的顺序，第一次尝试，写着写着因为什么原因就会重新创建一个用另一个方法写。
 一般最终版本都是“joshua-”命名的。
 
+----------------------------------------------------------------
+
 [1.井字棋](http://htmlpreview.github.io/?https://github.com/Joshua-leyer/javascript_game/blob/main/jing-game/joshua-jing.html)
 
 [2.贪吃蛇](http://htmlpreview.github.io/?https://github.com/Joshua-leyer/javascript_game/blob/main/Snake-game/joshua-Snake.html)
