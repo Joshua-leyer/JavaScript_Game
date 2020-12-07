@@ -13,3 +13,8 @@ one two ... 是作者对文件的命名方式。也是写东西的顺序，第�
 
 [2.贪吃蛇](http://htmlpreview.github.io/?https://github.com/Joshua-leyer/javascript_game/blob/main/Snake-game/joshua-Snake.html)
 
+[3.扫雷]()
+
+[4.popstart]()
+
+[5.见缝插针]()

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id = "bg">
+
+        <div id = "stick-border">   
+            <canvas id="stick-canvas" width="424" height="424"></canvas>
+        </div>
+
+    </div>
+
+    <button class="start">Start</button>
+    <button class="pause">Pause</button>
+</body>
+<style>
+    #bg {
+        position: relative;
+        height: 700px;
+        width: 424px;
+        border:1px solid slategrey;
+        margin:0 auto;
+        width: 748px;
+        /* background: cadetblue; */
+    }
+    #stick-border {
+        width: 424px;
+        position: relative;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+</style>
+<script>
+const canvas = document.getElementById('stick-canvas');
+const ctx = canvas.getContext('2d');
+
+var canvas_heith = canvas.height
+var canvas_width = canvas.width
+
+
+// ctx.rotate(45 * Math.PI / 180)
+// ctx.fillRect(50, 50, 100, 100)
+
+
+function generateCanvas ()  {
+    // console.log( canvas_width, canvas_heith)
+    canvas.height = canvas.height
+
+    ctx.fillStyle = '#ffeb3b75'
+    ctx.fillRect(0, 0, canvas_width, canvas_heith)
+    ctx.translate(canvas.width / 2, canvas.height / 2)
+
+    ctx.beginPath()
+    ctx.fillStyle = '#ccc'
+    ctx.arc(0, 0, 50, 0, 2*Math.PI)
+
+    ctx.fill()
+}
+
+
+const getBallsColor = (index) => {
+    let color_arr = ['#3eda8f', '#00bcd4', '#ffc107', '#7a4ec8', '#e91e63', '#e35ae1']
+    index = index % color_arr.length
+    return color_arr[index]
+}
+
+
+const drawArc = (index) => {
+    ctx.fillStyle = getBallsColor(index)
+    ctx.beginPath();
+    ctx.arc(0, 75, 10, 0, 2*Math.PI);
+    ctx.fill();
+
+}
+
+const drawLine = () => {
+    // ctx.fillStyle = '#ccc'
+    // ctx.fillRect()
+
+    ctx.beginPath();
+    ctx.lineWidth = 4;
+    //设置笔触的颜色
+    ctx.strokeStyle="#fff";
+    //设置开始坐标
+    ctx.moveTo(0, 50);
+    //设置结束坐标
+    ctx.lineTo(0, 80);
+    //绘制线条
+    ctx.stroke();
+}
+
+/*
+const draw = (balls) => {
+    generateCanvas()
+
+    // ctx.save()
+    for (let i = 0; i <balls.length; i++) {
+        ctx.save()
+        ctx.rotate(balls[i] * Math.PI / 180)
+        console.log(`第${i + 1}个球的度数是`,balls[i])
+        
+        drawArc(i)
+        // drawLine()
+        // ctx.restore()
+        balls[i] += 20
+        if (balls[i] >= 360) {
+            // 取模,就是让数字一直保持在360一下 , 看了一下log感觉还不对
+            balls[i] = balls[i] % 360
+        }
+        ctx.restore()
+    }
+}
+*/
+
+
+
+const judgmentGameOver = (balls) => {
+    //深拷贝一下
+    // let arr = []
+    // for (let i = 0; i < balls.length; i++) {
+    //     arr.push(balls[i])
+    // }
+    // 数组深拷贝的一种方法
+    var [ ...arr1 ] = balls
+    //返回的时候给排序
+    return arr1.sort()
+}
+// 根据这个图 , 我没有用数字来计算判断是否game over ,先用图形上看的方式判定吧
+// 每个球的角度不能小于16度 , 也就是数组每一个值之间差距不能小于16 同样,我能也就能计算出一共能
+// 放几个球 360 % 16
+const gameOver = (balls) => {
+    let arr = judgmentGameOver(balls)
+    for (let i = 1; i < arr.length; i++) {
+        // console.log(`第${i}个小球和第${i - 1}个小球的距离是`, Math.abs(balls[i] - balls[i - 1]))
+        if (Math.abs(arr[i] - arr[i - 1]) < 16) {
+            console.log(`${arr[i]}和${arr[i - 1]}的距离是${Math.abs(arr[i] - arr[i - 1])}了`, 'gameover')
+            clearInterval(timer)
+        }
+    }
+}
+
+const gamePause = () => {
+    // for (let i = 1; i < balls.length; i++) {
+    //     console.log(`第${i}个小球和第${i - 1}个小球的距离是`, Math.abs(balls[i] - balls[i - 1]))
+    //     if (Math.abs(balls[i] - balls[i - 1]) < 16) {
+    //         console.log('gameover')
+    //     }
+    // }
+    console.log('game stop')
+    clearInterval(timer)
+}
+
+const startGame = () => {  //开始
+    console.log('start')
+    timer = setInterval(updateGame, 10)
+}
+
+//发射bullet功能
+const addBall = (balls) => {
+    balls.push(0)
+    return balls
+}
+
+
+
+
+
+
+const updateGame = () => {
+
+    generateCanvas()
+    // console.log(balls)
+    // ctx.save()
+    //突然感觉canvas 果然只是个画图形的库
+    //写游戏巨怪,这是渲染和游戏数据处理写到一块了
+
+    for (let i = 0; i <balls.length; i++) {
+        ctx.save()
+        ctx.rotate(balls[i] * Math.PI / 180)
+        // console.log(`第${i + 1}个球的度数是`,balls[i])
+        drawLine()
+        drawArc(i)
+        ctx.restore()
+
+        balls[i] += speed
+        if (balls[i] >= 360) {
+            // 取模,就是让数字一直保持在360一下 , 看了一下log感觉还不对
+            balls[i] = balls[i] % 360
+        }
+    }
+    gameOver(balls)
+}
+
+//定义计时器 ,用var 比较好 , 我没注意写了个const 能运行, 但是有报错
+var timer = setInterval(updateGame, 10)
+
+const bindClickEvent = () => {
+    let map_bg = document.querySelector('#bg')
+    let pause  = document.querySelector('.pause')
+    let start  = document.querySelector('.start')
+    //也可以直接　用id 名字 bg直接当做那个标签元素,不用获取也可以。
+
+    map_bg.addEventListener('click', (event) => {
+        addBall(balls)
+    })
+    start.addEventListener('click', (event) => {
+        startGame()
+    })  
+    pause.addEventListener('click', (event) => {
+        gamePause(timer)
+    })
+}
+
+
+
+// 存储小球的位置数据,是度数
+var balls = [0, 32]
+var speed = 1
+
+function _main() {
+    generateCanvas()
+    bindClickEvent()
+}
+
+_main()
+
+
+</script>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="box select">
+
+    </div>
+
+</body>
+<style>
+    .select {
+        -webkit-user-select:none;
+
+        -moz-user-select:none;
+
+        -ms-user-select:none;
+
+        user-select:none;
+    }
+
+    
+    .box {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        padding: 14px;
+        transform: translate(-50%);
+        border: 10px solid saddlebrown;
+        border-radius: 10%;
+        /* 怪了 明明是个方块怎么高宽还不一样了 , 自己觉得是因为里面加了字体的原因导致横向的宽距,比列之间的距离窄 */
+        /*   感觉错了 */
+        width: 468px;
+        height: 468px;
+        display: flex;
+        /*可以不写这个,值是默认的 ,为了自己看着方便*/
+        flex-direction: row;
+        /* flex-wrap: wrap;  列不需要包 */
+        /* justify-content: space-between; */
+        justify-content: flex-start;
+    }
+    .column {
+        display: inline-flex;
+        flex-direction: column-reverse;
+        justify-content: flex-start;
+    }
+    .cell {
+        height: 48px;
+        width: 48px;
+        background:salmon;
+        margin: 2px;
+        border-radius: 10px;
+        flex: 0 1 48px;
+        text-align: center;
+        line-height: 48px;
+        /* flex-basis: 32px; */
+    }
+</style>
+<script src="05.js"></script>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id = "bg">
+        <p></p>
+        <div id = "stick-border">   
+            <canvas id="stick-canvas" width="424" height="424"></canvas>
+        </div>
+
+    </div>
+</body>
+<style>
+    #bg {
+        position: relative;
+        height: 700px;
+        width: 424px;
+        border:1px solid slategrey;
+        margin:0 auto;
+        width: 748px;
+        /* background: cadetblue; */
+    }
+    #stick-border {
+        width: 424px;
+        position: relative;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+</style>
+<script>
+const canvas = document.getElementById('stick-canvas');
+const ctx = canvas.getContext('2d');
+
+var canvas_heith = canvas.height
+var canvas_width = canvas.width
+
+
+// ctx.rotate(45 * Math.PI / 180)
+// ctx.fillRect(50, 50, 100, 100)
+
+
+function clearCanvas ()  {
+    console.log( canvas_width, canvas_heith)
+    canvas.height = canvas.height
+    ctx.fillStyle = '#ffeb3b75'
+    ctx.fillRect(0, 0, canvas_width, canvas_heith)
+    
+}
+
+
+var degree = 0
+var timeChange = setInterval( () => {
+    clearCanvas()
+
+    ctx.save()
+    
+    ctx.translate(canvas.width / 2, canvas.height / 2)
+
+    ctx.rotate(degree * Math.PI / 180)
+
+    ctx.fillStyle = '#03a9f4'
+    ctx.fillRect(0, 0, 100, 100)
+    ctx.restore()
+    degree += 20
+
+    if (degree >= 360) {
+        console.log(degree)
+        degree = 0
+    }
+},1000) 
+    // var timer = setInterval( function() {
+    //     //4.清除的点需要注意         ctx.clearRect(-151,-101,canvas.width,canvas.height);
+    //     //1.定义一个旋转的方法,确定每次时间间隔中要旋转多少弧度
+    //     ctx.save();
+    //     ctx.rotate(10 * Math.PI);
+
+    //     //2.绘制一个矩形，因为需求要求矩形以中心为轴进行旋转，但是canvas中rotate只能以画布左上角为轴，进行旋转
+    //     //因此，只要使矩形的中心和画布的左上角重合就可以了(起点的横纵坐标为矩形宽高的一半)
+    //     ctx.strokeRect(-150, -100, 300, 200);
+    //     ctx.restore()
+    // },5);
+
+</script>
+</html>

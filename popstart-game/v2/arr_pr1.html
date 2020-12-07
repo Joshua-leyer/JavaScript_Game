@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+const makeMapArr = () => {
+    let arr = []
+    for (let i = 0; i < 7; i++) {
+        arr[i] = []
+        for (let j = 0; j < 9; j++) {
+            arr[i][j] = j
+        }
+    }
+    return arr
+}
+
+let arr = makeMapArr()
+arr[2].splice(0, 1)
+arr[2].splice(0, 1)
+console.log(arr)
+
+
+</script>
+</html>

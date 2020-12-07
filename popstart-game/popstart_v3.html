@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <div class="score select">Score: 
+        <span class="number">0</span>
+    </div>
+    <div class="box select">
+        
+    </div>
+
+    <!-- <div class="alert-gameover select">
+        <div class="alert-text">1111</div>
+        <button class="restart">sestart</button>
+    </div> -->
+</body>
+<style>
+    .alert-gameover {
+        z-index: 2;
+        position: absolute;
+        left: 50%;
+        top: 45%;
+        transform: translate(-50% ,-50%);
+        height: 160px;
+        width: 224px;
+
+        border-radius: 25px;
+        font-size: 48px;
+        /* 子元素居中办法, 本来是给字体用的*/
+        text-align: center;
+        background: #e0e0e0e3;
+    }
+    .alert-text {
+
+        margin: 10px auto;
+    }
+    .restart {
+        /*  这里auto 没有效果*/
+        /* margin: 0 auto; */
+        padding: 0;
+        bottom: 10px;
+        height: 44px;
+        font-size: 24px;
+        width: 100px;
+        border: 1px solid black;
+        outline: none;
+        border-radius: 10px;
+        background: rgba(0,0,0,0.3);
+    }
+    .restart:hover {
+        /* font-size: large; */
+        font-weight: bold;
+    }
+
+
+
+
+    .select {
+        -webkit-user-select:none;
+
+        -moz-user-select:none;
+
+        -ms-user-select:none;
+
+        user-select:none;
+    }
+
+    .score {
+        display: inline-block;
+        position: absolute;
+        left: 35%;
+        top: 16%;
+        font-size: 24px;
+
+    }
+    .box {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        padding: 14px;
+        transform: translate(-50%);
+        border: 24px solid #000000;
+        border-radius: 10%;
+        /* 怪了 明明是个方块怎么高宽还不一样了 , 自己觉得是因为里面加了字体的原因导致横向的宽距,比列之间的距离窄 */
+        /*   感觉错了 */
+        width: 468px;
+        height: 468px;
+        display: flex;
+        /*可以不写这个,值是默认的 ,为了自己看着方便*/
+        flex-direction: row;
+        /* flex-wrap: wrap;  列不需要包 */
+        /* justify-content: space-between; */
+        justify-content: flex-start;
+    }
+
+    .column {
+        display: inline-flex;
+        flex-direction: column-reverse;
+        justify-content: flex-start;
+    }
+    .cell {
+        height: 48px;
+        width: 48px;
+        background:#CDCDC1;
+        margin: 2px;
+        border-radius: 15px;
+        flex: 0 1 48px;
+        text-align: center;
+        line-height: 48px;
+        /* flex-basis: 32px; */
+    }
+
+    .add-storage {
+        transform: scale(0.9);
+        box-shadow: 0px 0px 5px black;
+    }
+
+    .cell:hover {
+        transform: scale(0.95);
+    }
+</style>
+<script src="popstart_v3.js"></script>
+</html>

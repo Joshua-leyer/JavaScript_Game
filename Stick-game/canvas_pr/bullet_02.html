@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+		.animation {
+		    animation: move 2s infinite alternate;
+			border:1px solid;
+			width:100px;
+			height:100px;
+			margin-top:50px;
+		}
+		  
+		@keyframes move {
+		    0% {
+				transform: rotate(0deg) translate(-100px, 0); ;
+		    }
+		    100% {
+				transform: rotate(360deg) translate(100px, 0);
+		    }
+		}
+		
+		.btn:hover{
+			cursor: pointer;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="btn">stop</div>
+		<div class="animation"></div>
+		<script type="text/javascript">
+			document.querySelector('.btn').addEventListener('click', function() {
+                //querySelector() 方法返回文档中匹配指定 CSS 选择器的第一个元素
+			    let btn = document.querySelector('.btn');
+			    let elem = document.querySelector('.animation');
+			    let state = elem.style['animationPlayState'];
+			      
+			    if(state === 'paused') {
+			        elem.style['animationPlayState'] = 'running';
+			        btn.innerText = 'stop';
+			    } else {
+			        elem.style['animationPlayState'] = 'paused';
+			        btn.innerText = 'play';
+			    }
+			});			
+		</script>
+	</body>
+</html>
+

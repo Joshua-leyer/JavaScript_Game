@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css+js , 井字棋。</title>
+</head>
+<body>
+    <div id = "bg">
+        <p>尝试让他旋转起来。然后点击时候添加一个棒棒<br />
+
+            MD 这个canvas是真难用: 
+            canvas标签只是一个位图，它并不提供任何已经绘制在上面的对象的信息。 
+            canvas的内容不能像语义化的HTML一样暴露给一些协助工具。
+            一般来说，你应该避免在交互型的网站或者App上使用canvas。
+            接下来的内容能帮助你让canvas更加容易交互。
+            <br /> 
+            # 尝试canvas 旋转 失败。 改用css写。
+        </p>
+    <canvas id="sweep" width="748" height="900"></canvas>
+    </div>
+</body>
+
+<style>
+
+    #bg {
+        margin:0 auto;
+        width: 748px;
+    }
+    #sweep {
+        border:2px solid #000;
+    }
+
+
+
+</style>
+<script >
+    var circle = 'circle'
+
+    let map_arr = []
+    for (let i = 0; i < 3; i++) {
+        map_arr[i] = []
+        for (let j = 0; j < 3; j++) {
+            map_arr[i].push(0)
+        }
+    }
+
+    var canvas = document.getElementById('sweep');
+    var ctx = canvas.getContext('2d');
+
+    var ctx2 = canvas.getContext('2d');
+
+
+    // 清空函数
+    function clearCanvas() {
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+    }
+
+    const Circle = (pos_x, pos_y, r, color = '#ffffff') => {
+        ctx.beginPath();
+        ctx.fillStyle = color
+        ctx.strokeStyle = color
+        ctx.arc(pos_x, pos_y, r, 0, 2 * Math.PI)
+        ctx.stroke()
+        ctx.fill()
+    }
+
+    ctx2.rotate(20*Math.PI/180);
+    
+    const Stick = (pos_x, pos_y, weith, height) => {
+        ctx2.fillRect(300, 600, 100, 100)
+    }
+     
+    const getRandomColor = function(){
+    
+      return  '#' +
+    
+        (function(color){
+    
+        return (color +=  '0123456789abcdef'[Math.floor(Math.random()*16)])
+    
+          && (color.length == 6) ?  color : arguments.callee(color);
+    
+      })('');
+    
+    }
+
+    canvas.addEventListener("click", function(event){
+        clearCanvas()
+        let rgb_color = getRandomColor()
+        Circle(748 / 2, 224, 124, rgb_color)
+        Stick()
+    })
+
+
+
+</script>
+</html>

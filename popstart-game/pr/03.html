@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="box">
+        <div class="cou">
+            <div class="cell">1</div>
+            <div class="cell">2</div>
+            <div class="cell">3</div>
+        </div>
+        <div class="cou">
+            <div class="cell">1</div>
+            <div class="cell">2</div>
+            <div class="cell">3</div>
+        </div>
+    </div>
+</body>
+<style>
+    .box{
+        height: 400px;
+        width: 400px;
+        margin:50px;
+        background: blanchedalmond;
+        display: flex;
+
+        justify-content: flex-start;
+    }
+    .cou {
+        margin:3px;
+        height: 300px;
+        /* width: 300px; */
+        background: aquamarine;
+        display: inline-flex;
+        flex-direction: column-reverse;
+        justify-content: flex-start;
+    }
+    .cell {
+        height: 30px;
+        width: 30px;
+        border: 1px solid slateblue;
+        flex: 0 1 30px;
+    }
+</style>
+</html>

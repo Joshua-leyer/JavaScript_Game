@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strick </title>
+</head>
+<body>
+    <div id = "bg">
+        <p>添加旋转的棒棒糖</p>
+        <div id = "stick-border">   
+            <canvas id="stick-canvas" width="424" height="424"></canvas>
+        </div>
+
+        <div id="bigboll" class="big-circle select">
+            222
+        </div>
+
+        <div class="footer">
+            <ul class="all-boll">
+
+            </ul>
+        </div>
+    </div>
+
+
+</body>
+
+<style>
+
+
+    #stick-border {
+        margin: 0 auto;
+        width: 424px;
+    }
+    #stick-canvas {
+        border:2px solid #000;
+    }
+
+
+    .footer {
+        position: absolute;
+        border:1px solid black;
+        top: 75%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding-top: 15px;
+    }
+    .all-boll {
+        list-style: none;
+        margin:16px 10px 16px 10px;
+        padding: 0;
+    }
+    .boll {
+        height: 24px;
+        width: 24px;
+        margin: 3px;
+        border-radius: 50%;
+        border: 1px solid black;
+    }
+    /* 文本不可被选中*/
+    .select {
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
+    .big-circle {
+        position: absolute;
+        top:21%;
+        left: 50%;
+        /* 文字中心居中的一种方法。*/
+        line-height: 240px;
+        text-align: center;
+        border:1px solid black;
+        font-size: 24px;
+        height: 240px;
+        width: 240px;
+        border-radius: 50%;
+        /* background: rosybrown; */
+        transform: translateX(-50%);
+    }
+    #bg {
+        position: relative;
+        height: 700px;
+        width: 424px;
+        border:1px solid slategrey;
+        margin:0 auto;
+        width: 748px;
+    }
+
+</style>
+<script>
+
+const canvas = document.getElementById('stick-canvas');
+const ctx = canvas.getContext('2d');
+
+var canvas_heith = canvas.height
+var canvas_width = canvas.width
+
+
+
+
+ctx.translate(canvas.width / 2, canvas.height / 2)
+
+// transLate()
+const crossLine = () => {
+
+    ctx.rotate(1)
+    
+    ctx.beginPath()
+    ctx.moveTo(0, - canvas_heith / 2)
+    ctx.lineTo(0, canvas_heith / 2)
+    ctx.moveTo(-canvas_width / 2, 0)
+    ctx.lineTo(canvas_width / 2, 0)
+    ctx.stroke()
+
+
+    ctx.clearRect(-1000, 0, 1000 , 1000);  
+
+}
+crossLine()
+
+//测试 画几个旋转的棒棒糖
+const initStick = (number) => {
+    changeOriginPoint()
+
+    crossLine()
+    ctx.fillRect(10, 10, 100, 100)
+
+    // ctx.save()
+    // ctx.rotate(1)
+    // ctx.restore()
+}
+
+
+
+
+const bindClickEvent = () => {
+    let map_bg = document.querySelector('#bg')
+
+
+    //也可以直接　用id 名字 bg直接当做那个标签元素,不用获取也可以。
+
+    map_bg.addEventListener('click', (event) => {
+        // draw()
+        // console.log(1)
+    })
+}
+
+
+</script>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strick </title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id = "bg">
+        <div id = "stick-border">   
+            <canvas id="stick-canvas" width="424" height="424"></canvas>
+        </div>
+
+        <div class="footer">
+            <ul class="all-boll">
+
+            </ul>
+        </div>
+    </div>
+    <div class="button-sec select">
+        <button class="but" id="restart">Restart Pass</button>
+        <button class="but" id="up">UP Pass</button>
+        <button class="but" id="next">NEXT Pass</button>
+    </div>
+
+</body>
+
+<style>
+    #stick-border {
+        position: relative;
+        margin: 0 auto;
+        padding: 0;
+        top: 50px;
+        /* width: 424px; */
+    }
+    .alert {
+        position: absolute;
+        height: 80px;
+        /* width: 150px; */
+
+        position: absolute; left: 0; top: 0; right: 0; bottom: 0;
+        margin: auto;    /* 有了这个就自动居中了 */
+
+        /* background-color: red; */
+        color:black;
+        font-size: 42px;
+        text-align: center;
+        line-height: 80px;
+    }
+    #bg {
+        position: relative;
+        height: 700px;
+        /* border:1px solid slategrey; */
+        background-color: #fbeae3;
+        margin:0 auto;
+        width: 424px;
+        overflow: hidden;
+    }
+
+    .footer {
+        position: absolute;
+        /* border:1px solid black; */
+        top: 70%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding-top: 15px;
+    }
+    .all-boll {
+        list-style: none;
+        margin:16px 10px 16px 10px;
+        padding: 0;
+    }
+    .boll {
+        height: 25px;
+        width: 25px;
+        text-align: center;
+        color: #fff;
+        line-height: 25px;
+        margin: 10px;
+        border-radius: 50%;
+        /* border: 1px solid black; */
+    }
+    /* 文本不可被选中*/
+    .select {
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
+    .big-circle {
+        position: absolute;
+        top: 21%;
+        left: 50%;
+        /* 文字中心居中的一种方法。*/
+        /* border:1px solid black; */
+        /* height: 240px;
+        width: 240px; */
+        /* border-radius: 50%; */
+        /* background: rosybrown; */
+        transform: translateX(-50%);
+    }
+
+
+    .button-sec {
+        top: 30px;
+        /* border: 1px solid black; */
+        left: 50%;
+        height: 60px;
+        position: relative;
+        width: 300px;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+
+    .but {
+        position: relative;
+        height: 40px;
+        width: 60px;
+        top: 10px;
+        background: #fff;
+        border: 4px solid salmon;
+        border-radius:  5px;
+        outline: none;
+    }
+    .but :focus{outline:0;} 
+
+
+</style>
+
+
+<script  src="strick_v8.js" async></script>
+
+</html>

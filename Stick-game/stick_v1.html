@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css+js , 井字棋。</title>
+</head>
+<body>
+    <div id = "bg">
+        <p>一个圆圈随机改变颜色</p>
+    <canvas id="sweep" width="748" height="900"></canvas>
+    </div>
+</body>
+
+<style>
+
+    #bg {
+        margin:0 auto;
+        width: 748px;
+    }
+    #sweep {
+        border:2px solid #000;
+    }
+
+
+
+</style>
+<script >
+    var circle = 'circle'
+
+    let map_arr = []
+    for (let i = 0; i < 3; i++) {
+        map_arr[i] = []
+        for (let j = 0; j < 3; j++) {
+            map_arr[i].push(0)
+        }
+    }
+
+    var canvas = document.getElementById('sweep');
+    var ctx = canvas.getContext('2d');
+    // var canvas = document.getElementById("canvas");
+    // var ctx = canvas.getContext("2d");
+
+
+
+    // 清空函数
+    function clearCanvas() {
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+    }
+
+
+    var Circle = function(pos_x, pos_y, r, color = '#ffffff') {
+        ctx.beginPath();
+
+        ctx.fillStyle = color
+        ctx.strokeStyle = color
+        console.log(ctx.strokeStyle)
+        ctx.arc(pos_x, pos_y, r, 0, 2 * Math.PI)
+        ctx.stroke()
+
+        ctx.fill()
+    }
+
+
+    //MD 自己写了 一个赋值的时候出现问题了。不知道fillStyle 属性咋搞的。
+    // function rgbColor() {
+    //     let r = parseInt(Math.random() * 255, 10)
+    //     let g = parseInt(Math.random() * 255, 10)
+    //     let b = parseInt(Math.random() * 255, 10)
+    //     let rgb_color = `rgba(${r}, ${g}, ${b}, 0, 1)`
+    //     console.log(rgb_color)
+    //     return rgb_color
+    // }
+
+     
+    const getRandomColor = function(){
+    
+      return  '#' +
+    
+        (function(color){
+    
+        return (color +=  '0123456789abcdef'[Math.floor(Math.random()*16)])
+    
+          && (color.length == 6) ?  color : arguments.callee(color);
+    
+      })('');
+    
+    }
+
+    canvas.addEventListener("click", function(event){
+        clearCanvas()
+        let rgb_color = getRandomColor()
+        console.log(rgb_color)
+        // ctx.fillStyle = rgb_color;
+        // ctx.strokeStyle = rgb_color;
+        Circle(748 / 2, 224, 124, rgb_color)
+    })
+
+
+
+</script>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id = "bg">
+        <p></p>
+        <div id = "stick-border">   
+            <canvas id="stick-canvas" width="424" height="424"></canvas>
+        </div>
+
+    </div>
+</body>
+<style>
+    #bg {
+        position: relative;
+        height: 700px;
+        width: 424px;
+        border:1px solid slategrey;
+        margin:0 auto;
+        width: 748px;
+        /* background: cadetblue; */
+    }
+    #stick-border {
+        width: 424px;
+        position: relative;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+</style>
+<script>
+    const canvas = document.getElementById('stick-canvas');
+    const ctx = canvas.getContext('2d');
+
+    var canvas_heith = canvas.height
+    var canvas_width = canvas.width
+
+
+    const drawArc = () => {
+        ctx.beginPath();
+        ctx.arc(0, 75, 10, 0, 2*Math.PI);
+        ctx.fill();
+
+        console.log(11)
+
+        ctx.beginPath();
+        ctx.lineWidth = 4;
+
+        //设置笔触的颜色
+        ctx.fillStyle="#ccc";
+        //设置开始坐标
+        ctx.moveTo(0, 0);
+        //设置结束坐标
+        ctx.lineTo(100, 80);
+        //绘制线条
+        ctx.stroke();
+    }
+
+
+
+
+    const drawRect = () => {
+        // ctx.fillStyle = '#ccc'
+        // ctx.fillRect()
+        ctx.beginPath();
+        ctx.lineWidth = 4;
+
+        //设置笔触的颜色
+        ctx.fillStyle="#ccc";
+        //设置开始坐标
+        ctx.moveTo(0, 0);
+        //设置结束坐标
+        ctx.lineTo(100, 80);
+        //绘制线条
+        ctx.stroke();
+    }
+    drawArc()
+    // drawRect()
+</script>
+</html>
+
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>template</title>
+</head>
+<body>
+    <div class="bg">
+        <div class="contianer">
+
+        </div>
+    </div>
+</body>
+<style>
+    /* 完全是因为不知道怎么吧contianer 居中对齐，只能外层添加一个父元素。*/
+    .bg {
+        margin-top: 100px;
+        text-align: center;
+    }
+    .contianer {
+        /* 怎么让大小自适应子元素 */
+        /*  找了个这个，不知道具体原因*/
+        display: inline-block;
+        padding: 10px;
+        /* background: blueviolet; */
+    }
+
+
+    .cell {
+        /* 文字垂直居中  水平居中办法*/
+        line-height:62px;
+        text-align: center;
+        border-radius: 20%;
+        width: 62px;
+        height: 62px;
+        background: rgb(250, 163, 36);
+        float: left;
+        border:1px solid #000;
+        margin:1px;
+        font-size: 0px;
+        position: relative;
+    }
+
+    .hidden {
+        font-size: 0px;
+    }
+
+    .oppen {
+        font-size: 24px;
+        /* background:rgb(168, 228, 228, 0.65); */
+        background: url('/source/bomb.png');
+        background-size:100% 100%;  
+
+
+    }
+    .oppen_nine {
+        background: url('/source/bear.png');
+    }
+
+    /*  子元素设置了浮动，会导致父元素坍塌，用这个方法可以解决问题*/
+    .clearfix:after{
+        content: ' ';
+        display: block;
+        height: 0;
+        clear: both;
+    }
+
+</style>
+
+<script src="sweep_v3.js"></script>
+
+</html>
