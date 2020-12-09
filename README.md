@@ -1,13 +1,14 @@
 # javascript_game
-js-game 有时候想写个js超级简单小游戏。写到上面。 虽然简单，写的时候好累的。 
+js-game 有时候想到什么觉得有趣的东西。不定时更新 
 html css js canvas 实现一些简单的游戏。
 
 啥时候有想写的，写的出来就上传，写不出来。就抄别人的，看别人的看不懂，就不写了。 
 
 one two ... 是作者对文件的命名方式。也是写东西的顺序，第一次尝试，写着写着因为什么原因就会重新创建一个用另一个方法写。
-一般最终版本都是“joshua-”命名的,如果没有一般就是最大数字的
-有时候可能不能预览,github网络问题挺难受的
+一般最终版本大都是“joshua-”命名的,如果没有一般就是最大数字的。
+
 ----------------------------------------------------------------
+有时候可能不能预览,github网络问题。点开预览页面不出来
 
 [1.井字棋](http://htmlpreview.github.io/?https://github.com/Joshua-leyer/javascript_game/blob/main/jing-game/joshua-jing.html)
 
