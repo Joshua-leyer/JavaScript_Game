@@ -114,18 +114,18 @@ const getRealCell = (x, y) => {
     for (let i = 0; i < cloum_num; i++) {
         let cell_num = $('.column').eq(i).children().length
         // console.log(`第${i + 1}列的cell有${cell_num}个`)
-        //列内cell循环
+        // 列内cell循环
         for (let j = 0; j < cell_num; j++) {
             let jud_now_cell_x = Number($('.column').eq(i).children().eq(j).data("x"))
             let jud_now_cell_y = Number($('.column').eq(i).children().eq(j).data("y"))
             // console.log(`此时对比的cell属性坐标是${jud_now_cell_x},${jud_now_cell_y}`)
 
             if ( jud_now_cell_x == x && jud_now_cell_y == y) {
-                //遍历到相等的时候把(i ,j )真实坐标存起来
+                //遍历到相等的时候把(i, j)真实坐标存起来
                 real_x_y.push(i)
                 real_x_y.push(j)
 
-                // console.log('真实坐标是', i , j)
+                // console.log('真实坐标是', i, j)
                 return real_x_y
             }
         }
@@ -169,7 +169,7 @@ const removeCells = (cellsStorage, square) => {
     for (let i = 0; i < column_len; i++) {
         // console.log('删掉的坐标(x, y)', cellsStorage[i][0], cellsStorage[i][1])
         // square[cellsStorage[i][0]].splice(cellsStorage[i][1], 1) 这种操作会导致遍历的时候有些位置被忽略了
-        //这种操作会导致有undefined 有个空洞所有单次删除操作以后想办法吧undefined全部清空
+        // 这种操作会导致有undefined 有个空洞所有单次删除操作以后想办法吧undefined全部清空
         delete square[cellsStorage[i][0]][cellsStorage[i][1]]
     }
 
