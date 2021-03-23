@@ -7,7 +7,7 @@
 </head>
 <body>
     <div id="bg">
-        <h1>写一个css版本,</h1>
+        <h1>css版本的，</h1>
         <ul id="one">
 
             <li><a></a></li>
@@ -24,9 +24,7 @@
 
         </ul>
     </div>
-    <div>
-        <h3>没有处理最后一个完成后不显示。图案就结束的问题。</h3>
-    </div>
+
 </body>
 <style>
     h1{
@@ -48,7 +46,7 @@
         float: left;
         height: 100px;
         width: 30%;
-        border: 1px solid #000;
+        border: 1px solid #ddd;
         background-color: #fff;
         position: relative;
     } 
@@ -120,9 +118,6 @@
     }
     
 
-
-    
-
     //判断Game over~!
     const judgeGame = function(map_arr) {
         var row_plus = 0
@@ -182,7 +177,7 @@
         return true
     }
 
-    let vv = [0,0,1,0,0]
+    let vv = [0, 0, 1, 0, 0]
     console.log(fullMap(vv))
 
 
@@ -220,7 +215,7 @@
     const squentArr = function(arr, n, mark) {
         arr[n] = mark
 
-        //顺便循环传进去吧。每次标记都测试一次。
+        // 顺便循环传进去吧。每次标记都测试一次。
         var into_index = 0
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
@@ -228,8 +223,8 @@
                 into_index += 1
             }
         }
-        //写在这里可能不清晰。
-        //每次mark完以后都判断一下此时游戏状态时否可以结束。
+        // 写在这里可能不清晰。
+        // 每次mark完以后都判断一下此时游戏状态时否可以结束。
         var game_stute = judgeGame(map_arr)
         if (game_stute == 3 || game_stute == -3 || game_stute == 1) {
             restGame(game_stute)
@@ -238,7 +233,7 @@
     }
     
 
-    //图形操作
+    // game start 图形操作
     for (let i = 0; i < li_el.length; i++) {
         li_el[i].index = i
         li_el[i].addEventListener('click', function(event) {
