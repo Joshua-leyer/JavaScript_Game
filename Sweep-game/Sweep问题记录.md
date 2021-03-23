@@ -181,5 +181,10 @@
 
 # sweep_v4.js  添加右键标记功能
         找图片可麻烦死了
-        
+
+        图片沾满的写法
+
+        background: url(source/bear.png) no-repeat;
+
+        background-size: cover;
 

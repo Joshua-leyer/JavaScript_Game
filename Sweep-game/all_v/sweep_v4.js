@@ -18,7 +18,7 @@ const templateCell = (line_arr, x) => {
 // 返回 square.length 个 row 拼接的字符串
 // row 的内容由 templateCell 函数生
 const templateRow = (square) => {
-    // 总共行数，
+    // 总共行数,
     let len = square.length
     let all_row = ``
 
@@ -95,6 +95,7 @@ const showMap = () => {
         showCell(all_map[i])
     }
 }
+
 
 
 const vjkl = function(cell, square) {
